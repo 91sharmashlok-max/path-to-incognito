@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Incognito</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand"><span class="brand-symbol">i</span><span>incognito</span></div>
+        <p class="side-label">YOUR SPACES</p>
+        <nav id="server-list" class="server-list" aria-label="Servers"></nav>
+        <button id="search-servers" class="outline-button room-button" type="button">Search schools & colleges</button>
+        <button id="create-room" class="outline-button room-button" type="button">+ Create private room</button>
+        <div class="anonymous-note"><span class="lock">&#128274;</span><p><strong>Anonymous by design</strong>We do not ask for your real name, email, or phone number.</p></div>
+        <button id="open-profile" class="user-chip" type="button"><span class="my-avatar">S</span><span><strong id="my-handle">softsignal</strong><small>Profile in review</small></span><b>...</b></button>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="server-heading"><span id="server-icon" class="server-icon universe">&#10022;</span><div><p id="server-type">LOCATION-BASED SERVER</p><h1 id="server-name">Universe</h1></div></div>
+          <div class="top-actions"><button id="open-inbox" class="icon-control has-alert" type="button" aria-label="Notifications" title="Notifications">&#128276;</button><button id="open-profile-top" class="profile-button" type="button">My profile</button></div>
+        </header>
+
+        <section class="game-layout">
+          <section class="swipe-area" aria-label="Discover anonymous profiles">
+            <div class="swipe-intro"><div><p class="kicker">DISCOVER</p><h2>Someone nearby is a mystery.</h2></div><span id="card-count" class="count-pill">3 profiles</span></div>
+            <div id="swipe-stage" class="swipe-stage">
+              <div class="decision left-decision">PASS</div><div class="decision right-decision">QUIZ</div>
+              <article id="profile-card" class="profile-card" tabindex="0" aria-label="Current anonymous profile"></article>
+            </div>
+            <p id="swipe-hint" class="swipe-hint">Drag the card or use the controls. Right unlocks their quiz.</p>
+            <div class="swipe-controls"><button id="pass-profile" class="round-control pass" type="button" aria-label="Pass profile" title="Pass">&#10005;</button><button id="open-quiz" class="round-control quiz" type="button" aria-label="Unlock quiz" title="Unlock quiz">?</button><button id="like-profile" class="round-control like" type="button" aria-label="Unlock quiz" title="Unlock quiz">&#10003;</button></div>
+          </section>
+
+          <aside class="right-panel">
+            <section class="side-card status-card"><div class="card-title"><span class="mini-icon">&#9673;</span><h2>Your profile</h2></div><div class="review-row"><span class="review-orb"></span><div><strong>Safety review in progress</strong><p>Your profile becomes visible after the anonymous safety check.</p></div></div><div class="review-bar"><span></span></div><p class="review-time">Estimated review: under 24 hours</p><button id="edit-profile" class="text-button" type="button">Edit profile</button></section>
+            <section class="side-card"><div class="card-title"><span class="mini-icon">&#9783;</span><h2>How it works</h2></div><ol class="steps"><li><b>1</b><span>Swipe right to unlock their quiz.</span></li><li><b>2</b><span>Get their quiz right to notify them.</span></li><li><b>3</b><span>Both solve each other’s quiz to unlock chat.</span></li></ol></section>
+            <section class="side-card chat-card"><div class="card-title"><span class="mini-icon">&#128274;</span><h2>Private chats</h2></div><p>Chats only appear after two people solve each other’s quiz.</p><button id="demo-match" class="text-button" type="button">Preview a match flow</button></section>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="quiz-dialog"><form method="dialog" class="dialog-card quiz-dialog"><button class="close-button" value="cancel" aria-label="Close quiz" type="submit">&#10005;</button><p class="kicker">QUIZ UNLOCKED</p><h2 id="quiz-title">A question from this profile</h2><p id="quiz-prompt" class="quiz-prompt"></p><div id="quiz-options" class="quiz-options"></div><p id="quiz-feedback" class="feedback" aria-live="polite"></p></form></dialog>
+    <dialog id="profile-dialog"><form method="dialog" class="dialog-card profile-dialog"><button class="close-button" value="cancel" aria-label="Close profile editor" type="submit">&#10005;</button><p class="kicker">YOUR ANONYMOUS PROFILE</p><h2>Make it feel like you.</h2><p class="privacy-callout">Do not add names, exact locations, contact details, or details that identify you or another person.</p><label>Username<input id="profile-name" maxlength="22" value="softsignal" placeholder="e.g. softsignal"></label><div class="form-grid"><label>Gender <small>optional</small><select id="profile-gender"><option>Prefer not to say</option><option>Woman</option><option>Man</option><option>Non-binary</option></select></label><label>Profile mood<select id="profile-mood"><option value="coral">Sunset</option><option value="blue">Midnight</option><option value="green">Forest</option><option value="plum">Plum</option></select></label></div><label>Anonymous visual <small>optional - reviewed before display</small><input id="profile-photo" accept="image/*" type="file"></label><div id="photo-preview" class="photo-preview">No image selected</div><label>About your vibe<textarea id="profile-vibe" maxlength="140" placeholder="Hobbies, habits, body language, favorite quote, and harmless little details."></textarea></label><p class="quiz-rule">Create 3 questions. Someone must get at least 2 right to pass your quiz.</p><div class="quiz-builder"><label>Question 1<input id="quiz-question-1" maxlength="90" placeholder="Which snack do I always bring?"></label><label>Correct answer<input id="quiz-answer-1" maxlength="36" placeholder="Salted popcorn"></label><label>Question 2<input id="quiz-question-2" maxlength="90" placeholder="What is my weekend ritual?"></label><label>Correct answer<input id="quiz-answer-2" maxlength="36" placeholder="Early market walk"></label><label>Question 3<input id="quiz-question-3" maxlength="90" placeholder="Which weather makes me happiest?"></label><label>Correct answer<input id="quiz-answer-3" maxlength="36" placeholder="Light rain"></label></div><div class="dialog-actions"><button class="outline-button" value="cancel" type="submit">Cancel</button><button id="submit-profile" type="button">Submit for review</button></div></form></dialog>
+    <dialog id="inbox-dialog"><form method="dialog" class="dialog-card"><button class="close-button" value="cancel" aria-label="Close notifications" type="submit">&#10005;</button><p class="kicker">ACTIVITY</p><h2>Mutual quiz activity</h2><div id="notification-list" class="notification-list"></div></form></dialog>
+    <dialog id="room-dialog"><form method="dialog" class="dialog-card"><button class="close-button" value="cancel" aria-label="Close create room" type="submit">&#10005;</button><div id="room-create-view"><p class="kicker">PRIVATE ROOM</p><h2>Start a small space.</h2><p class="dialog-copy">Anyone with the invite link can join. Your room name is visible only to members.</p><label>Room name<input id="room-name" maxlength="34" placeholder="e.g. Sunday football crew"></label><div class="dialog-actions"><button class="outline-button" value="cancel" type="submit">Cancel</button><button id="make-room" type="button">Create invite room</button></div></div><div id="room-share-view" hidden><p class="kicker">ROOM CREATED</p><h2>Share your invite.</h2><p class="dialog-copy">This link is the only way to join <strong id="invite-room-name"></strong>. It is not listed in global search.</p><label>Invite link<input id="invite-link" readonly type="text"></label><div class="dialog-actions"><button id="copy-invite" type="button">Copy invite link</button><button class="outline-button" value="cancel" type="submit">Done</button></div><p id="copy-status" class="feedback" aria-live="polite"></p></div></form></dialog>
+    <dialog id="server-search-dialog"><form method="dialog" class="dialog-card"><button class="close-button" value="cancel" aria-label="Close server search" type="submit">&#10005;</button><p class="kicker">GLOBAL DIRECTORY</p><h2>Find your school or college.</h2><p class="dialog-copy">Public school and college servers can be discovered here. Private rooms are invite-only and never appear in results.</p><label>Search institutions<input id="server-search-input" autocomplete="off" placeholder="Try Nexus, Aurora, or school name"></label><div id="server-search-results" class="server-search-results"></div></form></dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
